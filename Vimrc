@@ -1,0 +1,33 @@
+if empty(glob("~/.vim/autoload/plug.vim"))
+    "Ensure all needed directories exist"
+    execute '!mkdir -p ~/.vim/plugged'
+    execute '!mkdir -p ~/.vim/autoload'
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'romainl/vim-qf'
+call plug#end()
+
+set number
+syntax on
+colorscheme slate
+set tabstop=4
+set shiftwidth=4
+set softtabstop=-1
+set expandtab
+set smarttab
+set autoindent
+set textwidth=79
+autocmd BufWinEnter,BufNewFile * setlocal formatoptions+=tc
+set colorcolumn=80
+set mouse=a
+filetype plugin indent on
+
+packadd termdebug
+
+let mapleader = ","
+"show the windows"
+noremap <leader>cw :botright :cw<cr>
+" Run make silently, then skip the press enter to continue"
+noremap <leader>m :silent! :make! \| :redraw!<cr>
